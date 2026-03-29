@@ -22,9 +22,13 @@ acknowledgments: |
 
 基于七步方法论的 OpenClaw Skill，用于在 OpenClaw 环境下完成 AI 辅助小说创作。支持都市、古代、玄幻、悬疑等多种题材，内置反AI检测写作规范。
 
+**核心特点**：AI 自动分析用户描述，推荐风格和知识库，用户确认后继续。
+
 ## 核心能力
 
 - 📚 **七步方法论**：从宪法到写作的完整创作流程
+- 🤖 **AI 智能分析**：自动判断类型、推荐风格和知识库
+- ✅ **用户确认机制**：每步分析结果需用户确认，可修改
 - 🔍 **自动追踪**：角色状态、情节进度、线索管理
 - ✍️ **反AI检测**：内置自然化写作规范，避免AI味
 - 📊 **质量分析**：一致性、节奏、视角、对话检查
@@ -34,8 +38,8 @@ acknowledgments: |
 
 ```
 1. /novel init           → 初始化项目
-2. /novel constitution   → 创建创作宪法 + 风格设置
-3. /novel specify        → 定义故事规格
+2. /novel constitution   → 创建宪法 + AI分析风格偏好
+3. /novel specify        → 定义规格 + AI分析类型（自动加载知识库）
 4. /novel clarify       → 澄清关键决策
 5. /novel plan          → 制定创作计划
 6. /novel track-init    → 初始化追踪系统
@@ -57,10 +61,14 @@ acknowledgments: |
 
 ### /novel constitution
 创建创作宪法，定义核心原则。
-- **必须**完成风格设置（选择预设/参考作品/自定义）
+- AI 分析用户风格偏好，推荐预设风格
+- 用户确认或修改后生成宪法
 
 ### /novel specify
 定义故事规格（类型、角色、世界观、冲突等）
+- AI 分析用户描述，自动判断小说类型
+- 自动加载对应的 genres、styles、requirements
+- 用户确认分析结果后生成规格文档
 
 ### /novel clarify
 澄清关键决策（5个关键问题）
@@ -86,13 +94,38 @@ acknowledgments: |
 ### /novel analyze
 综合质量分析（每5章自动触发）
 
+## AI 自动分析机制
+
+### constitution 步骤
+
+AI 分析用户描述的风格偏好，推荐：
+- 预设风格（自然人声/网文爽文/文学质感/古风典雅/极简白描）
+- 写作规范（反AI-v4/快节奏/甜文/虐文/强情绪）
+
+### specify 步骤
+
+AI 分析用户描述的故事，自动判断：
+- 题材类型（都市/古代/玄幻/悬疑等）
+- 故事风格（甜宠/爽文/虐文等）
+- 主角定位（普通人/豪门/重生/穿越等）
+- 金手指类型（隐藏身份/特殊能力等）
+
+并自动加载对应的知识库文件。
+
+### 确认机制
+
+每步分析后展示结果，用户可以：
+- 直接确认（"OK"）
+- 修改某项
+- 补充更多信息
+
 ## 写作知识库
 
 | 目录 | 内容 |
 |------|------|
 | `genres/` | 5种小说类型知识（romance, mystery, revenge, historical, wuxia） |
-| `styles/` | 写作风格（自然人声、网文爽文、文学质感、古风典雅、极简白描） |
-| `requirements/` | 写作规范（反AI-v4、快节奏等） |
+| `styles/` | 写作风格（5种预设） |
+| `requirements/` | 写作规范（反AI-v4、快节奏、甜文、虐文等） |
 
 ## 自动化规则
 
@@ -144,10 +177,14 @@ acknowledgments: |
 ```
 用户: /novel init 我的小说
 用户: /novel constitution
-      → 选择风格：1（预设）
-      → 选择：自然人声
+      → 描述：我想写一个都市甜宠文...
+      → AI 分析推荐：网文爽文 + romance-sweet
+      → 用户确认 OK
 用户: /novel specify
-      → 都市言情、甜宠、双豪门
+      → 描述：男主是霸道总裁，女主是普通上班族...
+      → AI 分析：都市言情 × 豪门 + 甜宠
+      → 自动加载：romance.md + web-novel.md + romance-sweet.md
+      → 用户确认 OK
 用户: /novel clarify
 用户: /novel plan
 用户: /novel track-init

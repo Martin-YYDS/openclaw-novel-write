@@ -1,0 +1,33 @@
+name: Publish to ClawHub
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          
+      - name: Install ClawHub CLI
+        run: npm install -g clawhub
+        
+      - name: Publish to ClawHub
+        env:
+          CLAWHUB_TOKEN: ${{ secrets.CLAWHUB_TOKEN }}
+        run: |
+          clawhub login --token $CLAWHUB_TOKEN
+          clawhub publish . \
+            --slug openclaw-novel-write \
+            --name "小说写作助手" \
+            --version ${GITHUB_REF#refs/heads/}-${GITHUB_SHA:0:7} \
+            --changelog "自动发布"
