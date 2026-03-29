@@ -1,56 +1,112 @@
 # Novel Write - OpenClaw 小说创作助手
 
-基于 [novel-writer-skills](https://github.com/wordflowlab/novel-writer-skills) 改编的 OpenClaw Skill，基于七步方法论的 AI 小说创作系统，支持都市、古代、玄幻、悬疑等多种题材。
+基于 [novel-writer-skills](https://github.com/wordflowlab/novel-writer-skills) 改编的 OpenClaw Skill。
 
-## 快速开始
+## 开始创作
 
-```
-1. /novel init [项目名]      # 初始化项目
-2. /novel constitution        # 创建宪法 + AI分析风格
-3. /novel specify             # 定义故事规格（AI自动分析+确认）
-4. /novel clarify             # 澄清关键决策
-5. /novel plan                # 制定创作计划
-6. /novel track-init          # 初始化追踪系统
-7. /novel tasks               # 生成任务清单
-8. /novel write 第1章         # 开始写作！
-```
-
-## AI 自动分析
-
-**constitution** 和 **specify** 步骤中，AI 会自动分析您的描述并推荐：
-
-- **风格设置**：根据您的偏好推荐预设风格（可修改）
-- **类型判断**：根据您的描述自动识别小说类型并加载对应知识库
-- **规范选择**：推荐适合的写作规范（可修改）
-
-每一步都会展示分析结果，等待您确认后再继续。
-
-## 主要功能
-
-- **七步方法论**：从规划到写作的完整流程
-- **AI 智能辅助**：自动分析风格和类型，加载对应知识库
-- **自动追踪**：角色状态、情节进度、线索管理
-- **反AI检测**：内置自然化写作规范
-- **按卷分拆**：任务细化到章节，含字数要求
-
-## 项目结构
+### 第一步：初始化项目
 
 ```
-<项目名>/
-├── memory/                    # 创作宪法、风格参考
-├── stories/<项目>/           # 规格、计划、任务、正文
-├── spec/
-│   ├── knowledge/            # 项目知识库
-│   └── tracking/             # 追踪文件
-└── .claude/
-    └── knowledge-base/       # 写作知识库
+/novel init 项目名
 ```
 
-## 写作知识库
+自动创建项目目录结构和追踪文件。
 
-- `genres/` - 5种小说类型
-- `styles/` - 写作风格（5种预设）
-- `requirements/` - 写作规范（反AI、快节奏、甜文等）
+---
+
+### 第二步：创建宪法 + 风格设置
+
+```
+/novel constitution
+```
+
+1. 描述你的写作风格偏好
+2. AI 分析并推荐预设风格
+3. 确认或修改推荐结果
+
+---
+
+### 第三步：定义故事规格
+
+```
+/novel specify
+```
+
+1. 自由描述你的故事想法（题材、类型、主角、冲突等）
+2. AI 自动分析并加载对应知识库
+3. 确认或修改分析结果
+
+---
+
+### 第四步：澄清关键决策
+
+```
+/novel clarify
+```
+
+回答 5 个关键问题，确保创作方向清晰。
+
+---
+
+### 第五步：制定创作计划
+
+```
+/novel plan
+```
+
+生成章节架构、线索分布、伏笔设计、节奏规划。
+
+---
+
+### 第六步：初始化追踪系统
+
+```
+/novel track-init
+```
+
+根据计划填充角色状态、关系网络、情节追踪。
+
+---
+
+### 第七步：生成任务清单
+
+```
+/novel tasks
+```
+
+按卷分拆任务，细化到每章节，含字数要求。
+
+---
+
+### 开始写作
+
+```
+/novel write 第1章
+```
+
+**前置条件**：必须完成以上 7 步。
+
+每次写作后自动执行 `/novel track --check` 追踪验证。
+每 5 章自动执行 `/novel analyze` 质量分析。
+
+---
+
+## 命令一览
+
+| 命令 | 说明 |
+|------|------|
+| `/novel init [项目名]` | 初始化项目 |
+| `/novel constitution` | 创建宪法 + 风格设置 |
+| `/novel specify` | 定义故事规格 |
+| `/novel clarify` | 澄清关键决策 |
+| `/novel plan` | 制定创作计划 |
+| `/novel track-init` | 初始化追踪系统 |
+| `/novel tasks` | 生成任务清单 |
+| `/novel write [章节]` | 执行写作 |
+| `/novel track --check` | 追踪验证 |
+| `/novel analyze` | 质量分析 |
+
+---
 
 ## 安装
 
@@ -58,10 +114,8 @@
 clawhub install openclaw-novel-write
 ```
 
-## 更多信息
-
-参见 [SKILL.md](./SKILL.md)
+---
 
 ## 致谢
 
-本 Skill 基于 [wordflowlab/novel-writer-skills](https://github.com/wordflowlab/novel-writer-skills) 改编，继承了其七步方法论和写作知识库。
+本 Skill 基于 [wordflowlab/novel-writer-skills](https://github.com/wordflowlab/novel-writer-skills) 改编。
