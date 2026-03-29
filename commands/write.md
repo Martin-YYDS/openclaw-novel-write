@@ -1,0 +1,261 @@
+# /novel write - 执行章节写作
+
+## 触发方式
+
+```
+/novel write [章节编号或任务ID]
+```
+
+或对话式：
+```
+请写第3章
+继续写第3章
+```
+
+---
+
+## ⚠️ 前置条件检查
+
+**在开始写作前，必须确认以下步骤已完成**：
+
+1. [ ] `/novel constitution` - 创作宪法
+2. [ ] `/novel specify` - 故事规格
+3. [ ] `/novel clarify` - 关键决策澄清
+4. [ ] `/novel plan` - 创作计划
+5. [ ] `/novel tasks` - 任务分解
+
+**如果任何步骤未完成，禁止执行写作！**
+
+---
+
+## 执行流程
+
+### 1. 查询上下文（按优先级）
+
+**先查（最高优先级）**：
+- `memory/constitution.md` - 创作宪法
+- `memory/style-reference.md` - 风格参考（如有）
+
+**再查（规格和计划）**：
+- `stories/*/specification.md` - 故事规格
+- `stories/*/creative-plan.md` - 创作计划
+- `stories/*/tasks.md` - 当前任务
+
+**自动加载写作风格和规范**：
+```yaml
+# 检查 specification.md 的 YAML frontmatter
+writing-style: natural-voice
+writing-requirements:
+  - anti-ai-v4
+  - fast-paced
+```
+如配置了，加载对应文件：
+- `.claude/knowledge-base/styles/natural-voice.md`
+- `.claude/knowledge-base/requirements/anti-ai-v4.md`
+
+**再查（状态和数据）**：
+- `spec/tracking/character-state.json` - 角色状态
+- `spec/tracking/relationships.json` - 关系网络
+- `spec/tracking/plot-tracker.json` - 情节追踪
+- `spec/tracking/validation-rules.json` - 验证规则
+
+**再查（知识库）**：
+- `spec/knowledge/` - 世界观、角色档案等
+- `stories/*/content/` - 前文内容
+
+**再查（写作规范）**：
+- `memory/personal-voice.md` - 个人语料（如有）
+- `spec/knowledge/natural-expression.md` - 自然化表达
+
+**条件查询（前三章专用）**：
+- 如果章节编号 ≤ 3 或总字数 < 10000字：
+  - 读取 `spec/presets/golden-opening.md`（黄金开篇法则）
+
+---
+
+### 2. 选择写作任务
+
+从 `tasks.md` 中选择状态为 `pending` 的任务，标记为 `in_progress`。
+
+验证前置条件：
+- 相关依赖任务是否完成
+- 必要设定是否就绪
+- 前序章节是否完成
+
+---
+
+### 3. 写作前提醒
+
+**基于宪法原则**：
+- 核心价值观要点
+- 质量标准要求
+- 风格一致性准则
+
+**基于规格要求**：
+- P0 必须包含的元素
+- 目标读者特征
+- 内容红线提醒
+
+**基于写作风格和规范（如已配置）**：
+
+```
+🎨 当前写作配置：
+- 风格：natural-voice（自然人声）
+  - 口语化优先，对话推动情节
+  - 行为>心理，具体>抽象
+
+- 规范：anti-ai-v4 + fast-paced
+  - 200+禁用词，形容词限制
+  - 每章至少2个爽点，节奏紧凑
+
+组合效果：自然流畅的快节奏爽文
+```
+
+---
+
+### 4. 分段格式规范
+
+- ⛔ **禁止使用**："一"、"二"、"三"等数字标记分段
+- ✅ **使用方式**：场景转换时用两个空行分隔
+- 📖 **原因**：数字标记过于生硬，破坏阅读沉浸感
+
+---
+
+### 5. 反AI检测写作规范
+
+#### 段落结构（关键）
+
+**单句成段比例**：30%-50%的段落应为单句成段
+
+**每段字数**：50-100字
+
+**重点信息独立成段**
+
+#### AI高频词黑名单
+
+| ❌ 禁用 | ✅ 替换 |
+|---------|---------|
+| 唯一的 | 这个、那个 |
+| 直到 | 一直到、直到…才 |
+| 弥漫着 | 有股、飘着 |
+| 摇摇欲坠的 | 旧的、快坏的 |
+| 空气凝固 | 沉默、没人说话 |
+| 话音未落 | 他话没说完 |
+| 猛地 | 突然、一把 |
+| 心中暗想 | 他想、寻思 |
+| 皱起眉头 | 眉头一皱 |
+| 叹了口气 | 叹了一声 |
+
+#### 具象化原则
+
+**时间抽象** ❌ → **具体化** ✅
+- "最近" → "上周三"
+- "很久以前" → "三年前的秋天"
+- "过了一会儿" → "等了半个小时"
+
+**人物抽象** ❌ → **具体化** ✅
+- "很多人" → "村里人都"
+- "有人说" → "隔壁老王说"
+
+**数量抽象** ❌ → **具体化** ✅
+- "效果很好" → "多收了三石粮"
+- "很贵" → "一顿饭花了三百块"
+
+---
+
+### 6. 章节结构
+
+```
+### 开场
+- 吸引读者
+- 承接前文
+- 建立氛围
+
+### 发展
+- 推进情节
+- 深化人物
+- 埋设伏笔
+
+### 转折
+- 制造冲突或悬念
+- 打破预期
+
+### 收尾
+- 适当收束
+- 章末钩子（引出下一章）
+```
+
+---
+
+### 7. 保存和更新
+
+- 章节内容保存到 `stories/*/content/volumeX/chapter-XX.md`
+- 更新任务状态为 `completed`
+- 记录完成时间和字数
+
+---
+
+### 8. 完成后行动
+
+#### 字数验证
+
+```bash
+# 使用字数统计脚本
+bash <skill>/scripts/bash/count-chinese-words.sh <文件路径>
+```
+
+**字数要求**：通常 2000-4000字（来自 `spec/tracking/validation-rules.json`）
+
+#### 自动化触发
+
+**after_each_chapter**：
+写作完成后自动执行追踪验证：
+```
+/novel track --check
+```
+
+**every_5_chapters**：
+如果完成章节数是5的倍数，自动执行：
+```
+/novel analyze
+```
+
+---
+
+### 9. 输出完成报告
+
+```
+✅ 章节写作完成
+
+📄 已保存：stories/她是我唯一的异常值/content/volume1/chapter-03.md
+📊 实际字数：3,256字
+📊 字数要求：3,000-3,500字
+📊 字数状态：✅ 符合要求
+
+🔍 自动化检查：
+   - /novel track --check → 已触发
+   - 角色一致性：✅
+   - 情节进度：✅
+```
+
+---
+
+## 与七步方法论的关系
+
+```
+/novel constitution → 提供创作原则
+         ↓
+/novel specify → 定义故事需求
+         ↓
+/novel clarify → 澄清关键决策
+         ↓
+/novel plan → 制定技术方案
+         ↓
+/novel tasks → 分解执行任务
+         ↓
+/novel write → 【当前】执行写作
+         ↓
+/novel analyze → 验证质量一致
+```
+
+**写作是执行层，要严格遵循上层的规格和计划。**
