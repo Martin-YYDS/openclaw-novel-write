@@ -18,6 +18,14 @@ jobs:
         with:
           node-version: '20'
           
+      - name: Get version
+        id: version
+        run: |
+          # Use commit date + short hash as pre-release version
+          DATE=$(date +%Y%m%d%H%M%S)
+          HASH=${GITHUB_SHA:0:7}
+          echo "VERSION=0.0.1-alpha.${DATE}.${HASH}" >> $GITHUB_OUTPUT
+          
       - name: Install ClawHub CLI
         run: npm install -g clawhub
         
@@ -29,5 +37,5 @@ jobs:
           clawhub publish . \
             --slug openclaw-novel-write \
             --name "小说写作助手" \
-            --version ${GITHUB_REF#refs/heads/}-${GITHUB_SHA:0:7} \
-            --changelog "自动发布"
+            --version ${{ steps.version.outputs.VERSION }} \
+            --changelog "自动发布 from commit ${{ github.sha }}"
