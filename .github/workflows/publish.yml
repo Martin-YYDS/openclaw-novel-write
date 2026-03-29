@@ -24,7 +24,7 @@ jobs:
           # Use commit date + short hash as pre-release version
           DATE=$(date +%Y%m%d%H%M%S)
           HASH=${GITHUB_SHA:0:7}
-          echo "VERSION=0.0.1-alpha.${DATE}.${HASH}" >> $GITHUB_OUTPUT
+          echo "VERSION=0.0.1-alpha+${DATE}.${HASH}" >> $GITHUB_OUTPUT
           
       - name: Install ClawHub CLI
         run: npm install -g clawhub
