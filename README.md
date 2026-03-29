@@ -84,10 +84,24 @@
 /novel write 第1章
 ```
 
-**前置条件**：必须完成以上 7 步。
+**前置检查**（自动执行）：
 
-每次写作后自动执行 `/novel track --check` 追踪验证。
-每 5 章自动执行 `/novel analyze` 质量分析。
+| 检查项 | 状态 |
+|--------|------|
+| ✅ constitution.md 存在 | 必须 |
+| ✅ specification.md 存在 | 必须 |
+| ✅ creative-plan.md 存在 | 必须 |
+| ✅ tasks.md 存在 | 必须 |
+| ✅ writing-style 已配置 | 必须 |
+| ✅ character-state.json 已填充 | 必须 |
+| ✅ plot-tracker.json 已填充 | 必须 |
+| ✅ progress.json 存在 | 必须 |
+
+如果任何检查项未通过，`/novel write` 会报错并提示缺少哪一步。
+
+**写作后自动触发**：
+- 每次完成 → `/novel track --check` 追踪验证
+- 每 5 章完成 → `/novel analyze` 质量分析
 
 ---
 
