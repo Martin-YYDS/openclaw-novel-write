@@ -47,12 +47,29 @@ acknowledgments: |
                           ↓
 开始写作 ↓
           ↓
-8. /novel write [章节]  → 执行写作
+8. /novel write [章节]  → 执行写作（⚠️ 强制检查前7步）
 9. /novel track --check → 自动追踪验证
 10. /novel analyze      → 每5章质量分析
 ```
 
 ## 核心命令
+
+### 触发方式
+
+| 命令 | 触发关键词示例 |
+|------|--------------|
+| `/novel init [项目名]` | "创建新小说项目"、"初始化项目" |
+| `/novel constitution` | "制定创作宪法"、"开始constitution" |
+| `/novel specify` | "定义故事规格"、"开始specify" |
+| `/novel clarify` | "澄清关键决策"、"clarify" |
+| `/novel plan` | "制定创作计划"、"生成章节大纲" |
+| `/novel track-init` | "初始化追踪系统" |
+| `/novel tasks` | "分解任务清单"、"生成写作任务" |
+| `/novel write [章节]` | "写第X章"、"开始第一章"、"继续写" |
+| `/novel track --check` | "追踪验证"、"检查状态" |
+| `/novel analyze` | "质量分析"、"分析章节" |
+
+> **触发规则**：`/novel [命令]` 直接触发，或用中文描述意图（AI 自动识别）
 
 ### /novel init [项目名]
 初始化新小说项目，创建标准目录结构。
@@ -80,11 +97,11 @@ acknowledgments: |
 从计划填充追踪系统（角色状态、关系网络、情节追踪）
 
 ### /novel tasks
-生成按卷分拆的任务清单，含字数要求
+生成按卷分拆的任务清单，含字数要求。**每卷单独md文件，tasks.md仅为总纲索引**。
 
 ### /novel write [章节编号]
 执行章节写作。
-- **必须先完成前7步**
+- **必须先完成前7步**（init → constitution → specify → clarify → plan → track-init → tasks）
 - 自动加载风格和规范
 - 遵循反AI写作规范
 
@@ -142,8 +159,11 @@ AI 分析用户描述的故事，自动判断：
 ├── stories/
 │   └── <项目>/
 │       ├── specification.md     # 故事规格
+│       ├── clarify-answers.md  # 关键决策澄清
 │       ├── creative-plan.md     # 创作计划
-│       ├── tasks.md             # 任务清单
+│       ├── tasks.md             # 任务总纲（索引）
+│       ├── tasks-volume-1.md    # 第1卷任务
+│       ├── tasks-volume-2.md    # 第2卷任务
 │       └── content/             # 正文
 │           └── volumeX/
 │               └── chapter-XX.md
@@ -175,24 +195,39 @@ AI 分析用户描述的故事，自动判断：
 ## 使用示例
 
 ```
-用户: /novel init 我的小说
-用户: /novel constitution
-      → 描述：我想写一个都市甜宠文...
+用户: 帮我创建一个新小说项目
+      → 触发 /novel init
+
+用户: 我想写一个都市甜宠文，男主是霸总
+      → 触发 /novel constitution
       → AI 分析推荐：网文爽文 + romance-sweet
       → 用户确认 OK
-用户: /novel specify
+
+用户: 继续描述故事
+      → 触发 /novel specify
       → 描述：男主是霸道总裁，女主是普通上班族...
       → AI 分析：都市言情 × 豪门 + 甜宠
       → 自动加载：romance.md + web-novel.md + romance-sweet.md
       → 用户确认 OK
-用户: /novel clarify
-用户: /novel plan
-用户: /novel track-init
-用户: /novel tasks
-用户: /novel write 第1章
-      → 自动追踪 + track --check
-用户: /novel write 第5章
-      → 自动分析
+
+用户: 好的，继续下一步
+      → 触发 /novel clarify
+
+用户: 开始制定计划
+      → 触发 /novel plan
+
+用户: 开始分解任务
+      → 触发 /novel track-init + /novel tasks
+
+用户: 开始写第一章
+      → 触发 /novel write
+      → ⚠️ 前置检查（前6步）→ 全部通过 → 开始写作
+      → 完成后自动 /novel track --check
+
+用户: 继续写第5章
+      → 触发 /novel write
+      → ⚠️ 前置检查 → 通过 → 开始写作
+      → 每5章自动 /novel analyze
 ```
 
 ## 依赖

@@ -14,17 +14,72 @@
 
 ---
 
-## ⚠️ 前置条件检查
+## ⚠️ 前置条件检查（强制）
 
 **在开始写作前，必须确认以下步骤已完成**：
 
-1. [ ] `/novel constitution` - 创作宪法
-2. [ ] `/novel specify` - 故事规格
-3. [ ] `/novel clarify` - 关键决策澄清
-4. [ ] `/novel plan` - 创作计划
-5. [ ] `/novel tasks` - 任务分解
+| 步骤 | 命令 | 产出文件 |
+|------|------|---------|
+| 1 | `/novel init` | 项目目录 + `.claude/` |
+| 2 | `/novel constitution` | `memory/constitution.md` |
+| 3 | `/novel specify` | `stories/*/specification.md` |
+| 4 | `/novel clarify` | `stories/*/clarify-answers.md` |
+| 5 | `/novel plan` | `stories/*/creative-plan.md` |
+| 6 | `/novel track-init` | `spec/tracking/*.json`（填充追踪系统） |
+| 7 | `/novel tasks` | `stories/*/tasks.md` + `stories/*/tasks-volume-*.md` |
 
 **如果任何步骤未完成，禁止执行写作！**
+
+### 强制检查逻辑
+
+执行 `/novel write` 时，**必须**先运行以下检查：
+
+```bash
+# 检查前置文件是否存在
+REQUIRED_FILES=(
+  "memory/constitution.md"
+  "stories/*/specification.md"
+  "stories/*/clarify-answers.md"
+  "stories/*/creative-plan.md"
+  "stories/*/tasks.md"
+)
+
+# 检查 track-init 是否已运行（tracking JSON 必须存在且非空）
+REQUIRED_DIRS=(
+  "spec/tracking"
+)
+
+for f in "${REQUIRED_FILES[@]}"; do
+  if ! ls $f &>/dev/null; then
+    echo "❌ 错误：缺少前置文件或步骤未完成"
+    echo ""
+    echo "当前需要但缺失：$f"
+    echo ""
+    echo "请按顺序完成以下步骤："
+    echo "  1. /novel init [项目名]"
+    echo "  2. /novel constitution"
+    echo "  3. /novel specify"
+    echo "  4. /novel clarify"
+    echo "  5. /novel plan"
+    echo "  6. /novel track-init"
+    echo "  7. /novel tasks"
+    echo ""
+    echo "必须全部完成后才能执行 /novel write"
+    exit 1
+  fi
+done
+
+# 检查 tracking 目录是否存在（track-init 验证）
+for d in "${REQUIRED_DIRS[@]}"; do
+  if [ ! -d "$d" ] || [ -z "$(ls -A $d/*.json 2>/dev/null)" ]; then
+    echo "❌ 错误：追踪系统未初始化"
+    echo "请先执行 /novel track-init"
+    exit 1
+  fi
+done
+```
+
+**检查通过后**才会加载上下文并开始写作。
 
 ---
 
