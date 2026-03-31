@@ -4,7 +4,7 @@
 
 ```
 /novel track [选项]
-/novel track --check    # 写作后自动检查
+/novel track --check    # 写作后追踪验证
 ```
 
 或对话式：
@@ -26,9 +26,9 @@
 
 ## 执行方式
 
-### 自动触发（after_each_chapter）
+### 写作后自动执行（after_each_chapter）
 
-每次 `/novel write` 完成后自动执行 `--check`
+每次 `/novel write` 完成后 AI 自动执行 `--check`（失败阻断写作）
 
 ### 手动触发
 
