@@ -110,7 +110,7 @@ acknowledgments: |
 追踪验证（字数、角色一致性、情节进度）
 
 ### /novel analyze
-综合质量分析（每5章自动触发）
+综合质量分析（**每5章提醒用户触发，失败阻断**）
 
 ## AI 自动分析机制
 
@@ -148,7 +148,7 @@ AI 分析用户描述的故事，自动判断：
 ## 自动化规则
 
 - **after_each_chapter**：每次写作后自动 `/novel track --check`（**强制，失败阻断**）
-- **every_5_chapters**：自动 `/novel analyze`（**强制，失败阻断**）
+- **every_5_chapters**：每5章提醒用户执行 `/novel analyze`（**强制，失败阻断**）
 
 ## 项目结构
 
@@ -228,7 +228,7 @@ AI 分析用户描述的故事，自动判断：
 用户: 继续写第5章
       → 触发 /novel write
       → ⚠️ 前置检查 → 通过 → 开始写作
-      → 每5章自动 /novel analyze
+      → 每5章提醒 → 用户触发 /novel analyze
 ```
 
 ## 依赖

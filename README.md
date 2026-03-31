@@ -179,7 +179,7 @@ stories/<项目>/
 
 **写作后强制检查（阻断型）**：
 - 每次完成 → `/novel track --check` 追踪验证（失败 → 阻断）
-- 每 5 章完成 → `/novel analyze` 质量分析（失败 → 阻断）
+- 每 5 章完成 → 提醒用户执行 `/novel analyze`（失败 → 阻断）
 
 ---
 
@@ -233,7 +233,7 @@ stories/<项目>/
       → 触发 /novel write
       → ⚠️ 前置检查 → 通过
       → AI 开始写作
-      → 每5章自动 /novel analyze
+      → 每5章提醒 → 用户触发 /novel analyze
       → AI: ✅ 质量分析完成
 ```
 
