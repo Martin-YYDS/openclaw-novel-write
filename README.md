@@ -177,9 +177,9 @@ stories/<项目>/
 
 如果任何检查项未通过，`/novel write` 会报错并提示缺少哪一步。
 
-**写作后自动触发**：
-- 每次完成 → `/novel track --check` 追踪验证
-- 每 5 章完成 → `/novel analyze` 质量分析
+**写作后强制检查（阻断型）**：
+- 每次完成 → `/novel track --check` 追踪验证（失败 → 阻断）
+- 每 5 章完成 → `/novel analyze` 质量分析（失败 → 阻断）
 
 ---
 

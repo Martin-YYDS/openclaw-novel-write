@@ -2,8 +2,8 @@ name: Publish to ClawHub
 
 on:
   push:
-    branches:
-      - master
+    tags:
+      - 'v*'
 
 jobs:
   publish:
@@ -21,10 +21,9 @@ jobs:
       - name: Get version
         id: version
         run: |
-          # Use commit date + short hash as pre-release version
-          DATE=$(date +%Y%m%d%H%M%S)
-          HASH=${GITHUB_SHA:0:7}
-          echo "VERSION=0.0.1-alpha+${DATE}.${HASH}" >> $GITHUB_OUTPUT
+          # Extract version from git tag (remove 'v' prefix)
+          VERSION=${GITHUB_REF_NAME#v}
+          echo "VERSION=$VERSION" >> $GITHUB_OUTPUT
           
       - name: Install ClawHub CLI
         run: npm install -g clawhub
