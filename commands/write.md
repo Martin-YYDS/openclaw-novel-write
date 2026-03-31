@@ -340,6 +340,22 @@ bash <skill>/scripts/bash/count-chinese-words.sh <文件路径>
       - 线索推进：✅
    
 📦 任务状态：✅ 已更新为 completed
+
+📌 提醒：第3章不是5的倍数，跳过质量分析
+   （每5章需执行 /novel analyze）
+```
+
+**每5章提醒**（章节编号 % 5 == 0 时输出）：
+
+```
+📌 第5章完成！
+
+   🔍 质量分析提醒：
+      - 已完成章节数：5（5的倍数）
+      - 建议执行 /novel analyze 进行质量分析
+      - 分析通过后才能继续写作
+
+   请执行：/novel analyze
 ```
 
 ---
