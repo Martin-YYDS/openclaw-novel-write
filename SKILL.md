@@ -1,6 +1,6 @@
 ---
 name: openclaw-novel-write
-version: 0.0.3
+version: 0.0.5
 description: OpenClaw 小说创作 Skill - 基于七步方法论的 AI 辅助写作系统
 tags:
   - novel
@@ -236,6 +236,4 @@ AI 分析用户描述的故事，自动判断：
 - OpenClaw
 - bash（用于辅助脚本）
 
-## 版本
 
-- v0.0.1-alpha：首次发布（alpha）
