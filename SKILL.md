@@ -102,6 +102,7 @@ acknowledgments: |
 ### /novel write [章节编号]
 执行章节写作。
 - **必须先完成前7步**（init → constitution → specify → clarify → plan → track-init → tasks）
+- **写完后强制检查**：字数验证 → 追踪验证 → 每5章质量分析，**任一失败阻断写作**
 - 自动加载风格和规范
 - 遵循反AI写作规范
 
@@ -146,8 +147,8 @@ AI 分析用户描述的故事，自动判断：
 
 ## 自动化规则
 
-- **after_each_chapter**：每次写作后自动 `/novel track --check`
-- **every_5_chapters**：自动 `/novel analyze`
+- **after_each_chapter**：每次写作后自动 `/novel track --check`（**强制，失败阻断**）
+- **every_5_chapters**：自动 `/novel analyze`（**强制，失败阻断**）
 
 ## 项目结构
 
