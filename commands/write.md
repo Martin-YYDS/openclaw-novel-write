@@ -25,8 +25,9 @@
 | 3 | `/novel specify` | `stories/*/specification.md` |
 | 4 | `/novel clarify` | `stories/*/clarify-answers.md` |
 | 5 | `/novel plan` | `stories/*/creative-plan.md` |
-| 6 | `/novel track-init` | `spec/tracking/*.json`（填充追踪系统） |
-| 7 | `/novel tasks` | `stories/*/tasks.md` + `stories/*/tasks-volume-*.md` |
+| 6 | `/novel timeline` | `stories/*/timeline.md` |
+| 7 | `/novel track-init` | `spec/tracking/*.json`（填充追踪系统） |
+| 8 | `/novel tasks` | `stories/*/tasks.md` + `stories/*/tasks-volume-*.md` |
 
 **如果任何步骤未完成，禁止执行写作！**
 
@@ -41,6 +42,7 @@ REQUIRED_FILES=(
   "stories/*/specification.md"
   "stories/*/clarify-answers.md"
   "stories/*/creative-plan.md"
+  "stories/*/timeline.md"
   "stories/*/tasks.md"
 )
 
@@ -61,8 +63,9 @@ for f in "${REQUIRED_FILES[@]}"; do
     echo "  3. /novel specify"
     echo "  4. /novel clarify"
     echo "  5. /novel plan"
-    echo "  6. /novel track-init"
-    echo "  7. /novel tasks"
+    echo "  6. /novel timeline"
+    echo "  7. /novel track-init"
+    echo "  8. /novel tasks"
     echo ""
     echo "必须全部完成后才能执行 /novel write"
     exit 1
