@@ -135,6 +135,17 @@ creative-plan.md  ──互相校验──►  timeline.md
 
 **两者必须一致，不一致时阻断流程。**
 
+### 时间线变更重校验
+
+如果在后续创作过程中需要修改 `timeline.md`（如新增事件、调整时间点），**必须重新进行互相校验**：
+
+1. 修改 timeline.md 后
+2. 对照 creative-plan.md 检查是否一致
+3. 如有不一致 → 同步修正 creative-plan.md 或 timeline.md
+4. track --check 时也会检测时间线与章节内容的一致性
+
+---
+
 ---
 
 ## 提示下一步
