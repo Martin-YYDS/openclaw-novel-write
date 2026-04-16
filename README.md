@@ -1,6 +1,10 @@
 # Novel Write - OpenClaw 小说创作助手
 
+<<<<<<< HEAD
 > **版本：0.1.0** | 基于 [novel-writer-skills](https://github.com/wordflowlab/novel-writer-skills) 改编
+=======
+> **版本：0.1.2** | 基于 [novel-writer-skills](https://github.com/wordflowlab/novel-writer-skills) 改编
+>>>>>>> 3a77ccf (chore: 版本更新至0.1.2)
 
 ---
 
@@ -14,6 +18,7 @@
 | 记忆系统 | .learnings/ 记录中途灵感，确保设定不丢失 |
 | Mermaid 情节图 | 自动生成人物关系图/战斗图/势力图 |
 | 失败记录 | fail-log 持续积累问题，持续优化 |
+| 五视角读者反馈 | Target/Casual/Expert/Critic/Editor 五视角评估 |
 | 反AI检测 | 内置自然化写作规范，避免AI味 |
 | 追踪系统 | 角色状态、情节进度、线索管理 |
 
@@ -46,6 +51,7 @@
 | `/novel learnings` | "记忆系统"、"记录设定"、"更新记忆" |
 | `/novel diagram` | "生成关系图"、"生成战斗图"、"势力图" |
 | `/novel fail-log` | "失败记录"、"查看问题" |
+| `/novel feedback` | "读者视角反馈"、"生成反馈报告" |
 
 ---
 
@@ -323,6 +329,7 @@ stories/<项目>/
 | `/novel learnings` | 记忆系统 |
 | `/novel diagram` | Mermaid 情节图解 |
 | `/novel fail-log` | 失败记录 |
+| `/novel feedback` | 五视角读者反馈 |
 
 ---
 
