@@ -1,6 +1,6 @@
 # Novel Write - OpenClaw 小说创作助手
 
-> **版本：0.1.0** | 基于 [novel-writer-skills](https://github.com/wordflowlab/novel-writer-skills) 改编
+> **版本：0.1.1** | 基于 [novel-writer-skills](https://github.com/wordflowlab/novel-writer-skills) 改编
 
 ---
 
