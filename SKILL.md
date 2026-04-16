@@ -34,7 +34,7 @@ acknowledgments: |
 - 📝 **记忆系统**：.learnings/ 记录中途灵感，确保设定不丢失
 - 📖 **失败记录**：fail-log 持续积累问题，持续优化
 - ✍️ **反AI检测**：内置自然化写作规范，避免AI味
-- 📊 **质量分析**：一致性、节奏、视角、对话检查
+- 📊 **质量分析**：一致性、节奏、视角、对话检查、五视角读者反馈
 - 🎯 **按卷分拆**：任务细化到章节，含字数要求
 
 ## 七步方法论
@@ -53,7 +53,7 @@ acknowledgments: |
           ↓
 9. /novel write [章节]  → 执行写作（⚠️ 强制检查前8步）
 10. /novel track --check → 自动追踪验证
-11. /novel analyze      → 每5章提醒触发质量分析
+11. /novel analyze      → 每5章质量分析（含5视角读者反馈）
 ```
 
 ## 核心命令
@@ -74,6 +74,7 @@ acknowledgments: |
 | `/novel learnings` | "记忆系统"、"记录设定"、"更新记忆" |
 | `/novel diagram` | "生成关系图"、"生成战斗图"、"势力图" |
 | `/novel fail-log` | "失败记录"、"查看问题" |
+| `/novel feedback` | "读者视角反馈"、"生成反馈报告" |
 
 > **触发规则**：`/novel [命令]` 直接触发，或用中文描述意图（AI 自动识别）
 
@@ -154,7 +155,7 @@ AI 分析用户描述的故事，自动判断：
 ## 自动化规则
 
 - **after_each_chapter**：每次写作后自动 `/novel track --check`（**强制，失败阻断**）
-- **every_5_chapters**：每5章提醒用户执行 `/novel analyze`（**强制，失败阻断**）
+- **every_5_chapters**：每5章提醒用户执行 `/novel analyze`（含5视角反馈，**强制，失败阻断**）
 
 ## 项目结构
 
