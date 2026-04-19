@@ -1,6 +1,10 @@
 ---
 name: openclaw-novel-write
+<<<<<<< HEAD
 version: 0.1.0
+=======
+version: 0.1.2
+>>>>>>> 3a77ccf (chore: 版本更新至0.1.2)
 description: OpenClaw 小说创作 Skill - 基于七步方法论的 AI 辅助写作系统
 tags:
   - novel
@@ -27,6 +31,7 @@ acknowledgments: |
 ## 核心能力
 
 - 📚 **七步方法论**：从宪法到写作的完整创作流程
+- 🔄 **六阶段写作**：预写分析 → 初稿生成 → 自检 → 文笔润色 → 修订 → 元数据输出
 - 🤖 **AI 智能分析**：自动判断类型、推荐风格和知识库
 - ✅ **用户确认机制**：每步分析结果需用户确认，可修改
 - 🔍 **自动追踪**：角色状态、情节进度、线索管理、伏笔回收
@@ -51,7 +56,7 @@ acknowledgments: |
                           ↓
 开始写作 ↓
           ↓
-9. /novel write [章节]  → 执行写作（⚠️ 强制检查前8步）
+9. /novel write [章节]  → 六阶段写作（预写→初稿→自检→润色→修订→元数据）
 10. /novel track --check → 自动追踪验证
 11. /novel analyze      → 每5章质量分析（含5视角读者反馈）
 ```
@@ -70,7 +75,7 @@ acknowledgments: |
 | `/novel track-init` | "初始化追踪系统" |
 | `/novel tasks` | "分解任务清单"、"生成写作任务" |
 | `/novel timeline` | "生成时间线"、"创建时间线文档" |
-| `/novel write [章节]` | "写第X章"、"开始第一章"、"继续写" |
+| `/novel write [章节]` | "写第X章"、"开始第一章"、"继续写"、"六阶段写作" |
 | `/novel learnings` | "记忆系统"、"记录设定"、"更新记忆" |
 | `/novel diagram` | "生成关系图"、"生成战斗图"、"势力图" |
 | `/novel fail-log` | "失败记录"、"查看问题" |
@@ -155,7 +160,7 @@ AI 分析用户描述的故事，自动判断：
 ## 自动化规则
 
 - **after_each_chapter**：每次写作后自动 `/novel track --check`（**强制，失败阻断**）
-- **every_5_chapters**：每5章提醒用户执行 `/novel analyze`（含5视角反馈，**强制，失败阻断**）
+- **every_5_chapters**：每5章提醒用户执行 `/novel analyze`（含5视角读者反馈，**强制，失败阻断**）
 
 ## 项目结构
 
